@@ -1,6 +1,7 @@
 import Menu.PlaceAnOrderMenu;
 import interfases.Printable;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,7 +20,13 @@ public class PlaceAnOrder {
             }
             System.out.println("Выберите, что нужно сделать");
             printable.print();
-            int menuItem = SCANNER.nextInt();
+            int menuItem;
+            try {
+                menuItem = SCANNER.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Неверно введенное значение");
+                return;
+            }
             switch (menuItem) {
                 case 1:
                     calculateTotalCost();

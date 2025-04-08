@@ -1,6 +1,7 @@
 import Menu.MainMenu;
 import interfases.Printable;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,10 +15,16 @@ public class Main {
     private static final Printable printable = new MainMenu();
 
     public static void main(String[] args) {
-
         while (true) {
             printable.print();
-            int menuItem = scanner.nextInt();
+            int menuItem;
+            try {
+                menuItem = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Неверно введенное значение");
+                return;
+            }
+
             switch (menuItem) {
                 case 1:
                     CHOICE_OF_FLOWERS.workingWithChoiceOfFlowersMenu();

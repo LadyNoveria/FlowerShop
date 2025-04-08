@@ -2,6 +2,7 @@ import Menu.EditOrderMenu;
 import enums.Flowers;
 import interfases.Printable;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -18,11 +19,17 @@ public class EditOrder {
                 break;
             }
 
-            System.out.println("Содержимое корзины: ");
             Basket.printBasket();
             System.out.println("Выберите, что нужно сделать");
             printable.print();
-            int menuItem = SCANNER.nextInt();
+            int menuItem;
+            try {
+                menuItem = SCANNER.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Неверно введенное значение");
+                return;
+            }
+
             switch (menuItem) {
                 case 1:
                     deleteOrderItem();
@@ -70,10 +77,10 @@ public class EditOrder {
             System.out.print("Выберите цветок, количество которого нужно поменять: ");
             printFlowers(flowers);
             int flower = SCANNER.nextInt();
-            System.out.print("Введите количество: ");
+            System.out.println("Введите количество: ");
             int numberOfFlowers = SCANNER.nextInt();
             Basket.addFlowersToBasket(flowers.get(flower), numberOfFlowers);
-        } catch (Exception e) {
+        } catch (InputMismatchException e) {
             System.out.println("Неверно введенные параметры");
         }
     }

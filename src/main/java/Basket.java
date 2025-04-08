@@ -22,7 +22,7 @@ public class Basket {
         return boxing;
     }
 
-    public static double getFinalPrice() {
+    public static double getFinalPrice(){
         return finalPrice;
     }
 
@@ -59,7 +59,7 @@ public class Basket {
         boxing = null;
     }
 
-    public static void clearBasket() {
+    public static void clearBasket(){
         flowers = new HashMap<>();
         boxing = null;
     }
